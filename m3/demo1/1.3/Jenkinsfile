@@ -1,0 +1,46 @@
+pipeline {
+    agent any
+    parameters {
+        booleanParams(name: 'RC', defaultValue: false, description: 'Is this a Release Candidate?')
+    }
+    environment {
+        VERSION = "0.1.0"
+        VERSION_RC = "rc.2"
+    }
+    stages {
+        stage('Audit tools') {
+            steps {
+                auditTools()
+            }
+        }
+        stage('Build') {
+            environment {
+                VERSION_SUFFIX = getVersionSuffix()
+            }
+            steps {
+                echo "Bulding version: ${VERSION} with suffix: ${VERSION_SUFFIX}"
+                sh 'dotnet build '
+            }
+        }
+        stage('Unit Test') {}
+        stage('Smoke Test') {}
+        stage('Publish') {}
+    }
+}
+
+String getVersionSuffix() {
+    if (params.RC) {
+        return env.VERSION_RC
+    } else {
+        return env.VERSION_RC + '+ci' + env.BUILD_NUMBER
+    }
+}
+
+void auditTools() {
+    sh '''
+        git version
+        docker version
+        dotnet --list-sdks
+        dotnet --list-runtimes
+    '''
+}
