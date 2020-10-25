@@ -3,7 +3,7 @@ library identifier: 'jenkins-pipeline-demo-library@main',
 
 pipeline {
     agent any
-    paremeters {
+    parameters {
         booleanParam(name: 'RC', defaultValue: false, description: 'Is this a Release Candidate?')
     }
     environment {
