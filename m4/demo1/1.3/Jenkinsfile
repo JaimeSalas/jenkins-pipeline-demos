@@ -6,7 +6,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    image = docker.build("jaimesalas/pi:psod-pipelines", "--pull -f m4/Dockerfile m4")
+                    image = docker.build("jaimesalas/jenkins-pipeline-demos:0.0.1", "--pull -f m4/Dockerfile m4")
                 }
             }
         }
