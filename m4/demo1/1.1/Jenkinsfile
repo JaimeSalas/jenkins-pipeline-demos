@@ -32,7 +32,7 @@ pipeline {
         }
         stage('Smoke Test') {
             steps {
-              sh 'dotnet "$WORKSPACE/m4/src/Pi.Web/bin/Debug/netcoreapp3.1/Pi.Web.dll"'
+              sh 'dotnet "$WORKSPACE_TMP/m4/src/Pi.Web/bin/Debug/netcoreapp3.1/Pi.Web.dll"'
             }
         }
     }
