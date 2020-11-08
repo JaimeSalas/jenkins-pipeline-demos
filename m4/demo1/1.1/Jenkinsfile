@@ -4,6 +4,7 @@ pipeline {
             image 'mcr.microsoft.com/dotnet/core/sdk:3.1.101'
         }
     }
+    // https://stackoverflow.com/questions/53556623/dotnet-build-permission-denied-in-docker-container-running-jenkins
     environment {
        HOME = '/tmp'
     }
@@ -25,7 +26,7 @@ pipeline {
         }
         stage('Unit Test') {
             steps {
-              dir("$WORKSPACE_TMP/m4/src") {
+              dir("$WORKSPACE/m4/src") {
                 sh '''
                     dotnet test Pi.Math.Tests/Pi.Math.Tests.csproj
                     dotnet test Pi.Runtime.Tests/Pi.Runtime.Tests.csproj
