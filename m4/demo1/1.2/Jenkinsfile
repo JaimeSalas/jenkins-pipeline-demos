@@ -15,8 +15,7 @@ pipeline {
         }
         stage('Smoke Test') {
             steps {
-                // sh 'docker run sixeyed/pi:psod-pipelines'
-                sh 'echo docker run'
+                sh 'docker run jaimesalas/jenkins-pipeline-demos:0.0.1'
             }
         }
     }
