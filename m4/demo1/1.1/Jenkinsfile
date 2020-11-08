@@ -4,6 +4,9 @@ pipeline {
             image 'mcr.microsoft.com/dotnet/core/sdk:3.1.101'
         }
     }
+    environment {
+       HOME = '/tmp'
+    }
     stages {
         stage('Verify') {
             steps {
@@ -17,7 +20,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'dotnet build "$WORKSPACE_TMP/m4/src/Pi.Web/Pi.Web.csproj"'
+                sh 'dotnet build "$WORKSPACE/m4/src/Pi.Web/Pi.Web.csproj"'
             }
         }
         stage('Unit Test') {
@@ -32,7 +35,7 @@ pipeline {
         }
         stage('Smoke Test') {
             steps {
-              sh 'dotnet "$WORKSPACE_TMP/m4/src/Pi.Web/bin/Debug/netcoreapp3.1/Pi.Web.dll"'
+              sh 'dotnet "$WORKSPACE/m4/src/Pi.Web/bin/Debug/netcoreapp3.1/Pi.Web.dll"'
             }
         }
     }
