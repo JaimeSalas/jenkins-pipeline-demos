@@ -1,6 +1,10 @@
 library identifier: 'jenkins-pipeline-demo-library@main',
         retriever: modernSCM([$class: 'GitSCMSource', remote: 'https://github.com/JaimeSalas/jenkins-pipeline-demo-library.git'])
 
-crossPlatformBuild repoName: 'jaimesalas/jenkins-pipeline-demos',
+// crossPlatformBuild repoName: 'jaimesalas/jenkins-pipeline-demos',
+//                    linuxContext: 'm4',
+//                    windowsContext: 'm4'
+
+crossPlatformBuildFake repoName: 'jaimesalas/jenkins-pipeline-demos',
                    linuxContext: 'm4',
                    windowsContext: 'm4'
